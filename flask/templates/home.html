@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Jananai Traders</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    </head>
+    <body>
+        <h1> Labour Managment Using Python Flask & MYSQL     </h1>
+
+        <h4>
+
+           {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                 {% for message in messages %}
+                   {{ message }}
+                 {% endfor %}
+              {% endif %}
+           {% endwith %}
+
+        </h4>
+
+        <p><a href="{{url_for('addusers')}}">Add Users</a></p>
+        <table>
+             <tr>
+                 <th>ID</th>
+                 <th>Name</th>
+                 <th>Age</th>
+                 <th>City</th>
+                 <th>EDIT</th>
+                 <th>DELETE</th>
+            </tr>
+            {% for data in datas %}
+            <tr>
+               <td>{{data.ID}}</td>
+               <td>{{data.Name}}</td>
+               <td>{{data.Age}}</td>
+               <td>{{data.City}}</td>
+               <td><a href="{{url_for('editUser',id=data.ID)}}">Edit</a></td>
+               <td><a onclick="return confirm('Are You Sure to Delete?');" href="{{url_for('deleteUser',id=data.ID)}}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+                 
+    </body>
+    
+</html>
+
+
